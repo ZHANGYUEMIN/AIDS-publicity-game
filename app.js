@@ -1929,4 +1929,71 @@ document.addEventListener('DOMContentLoaded', function() {
         geometricBtn.classList.remove('active');
         activeBtn.classList.add('active');
     }
-}); 
+});
+
+// 优化滚动性能
+(function() {
+    // 防抖函数
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this;
+            const args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+
+    // 优化监听滚动事件
+    const optimizedScroll = debounce(function() {
+        // 这里可以添加滚动时执行的操作
+        // 例如懒加载图片或动态加载内容
+    }, 20);
+
+    // 使用被动事件监听器来提高滚动性能
+    window.addEventListener('scroll', optimizedScroll, { passive: true });
+
+    // 减少重排和重绘的频率
+    function smoothScroll() {
+        // 在滚动时减少动画效果
+        document.body.classList.add('is-scrolling');
+        
+        // 滚动结束后恢复动画
+        const scrollTimer = debounce(function() {
+            document.body.classList.remove('is-scrolling');
+        }, 150);
+        
+        window.addEventListener('scroll', scrollTimer, { passive: true });
+    }
+
+    // 延迟加载非关键资源
+    function deferNonCriticalAssets() {
+        // 找到所有具有data-src属性的图像（如果有的话）
+        const deferredImages = document.querySelectorAll('img[data-src]');
+        if (deferredImages.length > 0) {
+            // 使用Intersection Observer延迟加载图像
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            deferredImages.forEach(image => imageObserver.observe(image));
+        }
+    }
+
+    // 页面加载完成后初始化优化
+    window.addEventListener('load', function() {
+        smoothScroll();
+        deferNonCriticalAssets();
+        
+        // 如果存在过多动画影响性能，可以选择性禁用部分动画
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.body.classList.add('reduced-motion');
+        }
+    });
+})(); 

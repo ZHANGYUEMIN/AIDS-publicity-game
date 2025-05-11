@@ -35,6 +35,19 @@ body {
     margin: 0;
     position: relative;
     width: 100%;
+    /* 启用硬件加速 */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* 减少背景图重绘消耗 */
+    background-attachment: fixed;
+    
+    /* 启用更好的次像素渲染 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .body-content {
@@ -1895,23 +1908,32 @@ body {
 /* 添加背景样式选项 */
 .bg-ribbon {
     background-color: #f8f9fa;
+    /* 优化背景图性能 */
     background-image: url('images/ribbon-pattern.svg');
     background-repeat: repeat;
     background-size: 100px 100px;
+    background-attachment: fixed;
+    image-rendering: optimizeSpeed;
 }
 
 .bg-medical {
     background-color: #f0f4f8;
+    /* 优化背景图性能 */
     background-image: url('images/medical-pattern.svg');
     background-repeat: repeat;
     background-size: 100px 100px;
+    background-attachment: fixed;
+    image-rendering: optimizeSpeed;
 }
 
 .bg-geometric {
     background-color: #f5f5f5;
+    /* 优化背景图性能 */
     background-image: url('images/geometric-pattern.svg');
     background-repeat: repeat;
     background-size: 100px 100px;
+    background-attachment: fixed;
+    image-rendering: optimizeSpeed;
 }
 
 /* 背景选择器样式 */
@@ -2231,4 +2253,106 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* 优化滚动性能 */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    /* 启用硬件加速 */
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* 减少背景图重绘消耗 */
+    background-attachment: fixed;
+    
+    /* 启用更好的次像素渲染 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 优化动画元素性能 */
+.footer-icon::before,
+.policy-icon::before,
+.slogan-banner::before,
+button,
+.footer-section,
+.chart-wrapper,
+.score-circle,
+.report-item,
+.option,
+.student-item,
+.animated-element {
+    will-change: transform, opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* 优化背景图加载对性能的影响 */
+.bg-ribbon,
+.bg-medical,
+.bg-geometric {
+    will-change: background-position;
+    background-attachment: fixed;
+}
+
+/* 减少动态图标对滚动的影响 */
+@media (prefers-reduced-motion: reduce) {
+    .footer-icon::before,
+    .policy-icon::before,
+    .slogan-banner::before {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* 滚动时暂停动画以提高性能 */
+.is-scrolling .footer-icon::before,
+.is-scrolling .policy-icon::before,
+.is-scrolling .slogan-banner::before,
+.reduced-motion .footer-icon::before,
+.reduced-motion .policy-icon::before,
+.reduced-motion .slogan-banner::before {
+    animation-play-state: paused !important;
+}
+
+/* 减少滚动时的视觉负担 */
+.is-scrolling {
+    /* 滚动时禁用不必要的过渡效果 */
+    --scrolling-transition: none !important;
+}
+
+.is-scrolling .footer-section:hover,
+.is-scrolling .chart-wrapper:hover,
+.is-scrolling .option:hover,
+.is-scrolling .student-item:hover,
+.is-scrolling button:hover {
+    transform: none !important;
+    transition: var(--scrolling-transition);
+}
+
+/* 改进滚动条样式 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
 } 
