@@ -23,7 +23,10 @@
 
 body {
     font-family: 'Noto Sans SC', sans-serif;
-    background: var(--gradient-bg);
+    background-color: #f8f9fa;
+    background-image: url('images/ribbon-pattern.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1239,7 +1242,10 @@ select:focus {
 /* 调整body以适应固定底部 */
 body {
     font-family: 'Noto Sans SC', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background-color: #f8f9fa;
+    background-image: url('images/ribbon-pattern.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -1884,4 +1890,58 @@ body {
     color: rgba(106, 90, 205, 0.7);
     margin-top: 2px;
     font-style: italic;
+}
+
+/* 添加背景样式选项 */
+.bg-ribbon {
+    background-color: #f8f9fa;
+    background-image: url('images/ribbon-pattern.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+.bg-medical {
+    background-color: #f0f4f8;
+    background-image: url('images/medical-pattern.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+.bg-geometric {
+    background-color: #f5f5f5;
+    background-image: url('images/geometric-pattern.svg');
+    background-repeat: repeat;
+    background-size: 100px 100px;
+}
+
+/* 背景选择器样式 */
+.background-selector {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.bg-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.bg-btn:hover {
+    transform: scale(1.1);
+}
+
+.bg-btn.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 } 

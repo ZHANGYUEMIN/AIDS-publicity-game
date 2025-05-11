@@ -1872,4 +1872,61 @@ function initPolicyPages() {
             });
         }
     });
-} 
+}
+
+// 背景切换功能
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取背景按钮元素
+    const ribbonBtn = document.getElementById('bg-ribbon-btn');
+    const medicalBtn = document.getElementById('bg-medical-btn');
+    const geometricBtn = document.getElementById('bg-geometric-btn');
+    
+    // 获取body元素
+    const body = document.body;
+    
+    // 从localStorage加载保存的背景设置
+    const savedBg = localStorage.getItem('preferred-background');
+    if (savedBg) {
+        body.className = savedBg;
+        
+        // 更新按钮状态
+        ribbonBtn.classList.remove('active');
+        medicalBtn.classList.remove('active');
+        geometricBtn.classList.remove('active');
+        
+        if (savedBg === 'bg-ribbon') {
+            ribbonBtn.classList.add('active');
+        } else if (savedBg === 'bg-medical') {
+            medicalBtn.classList.add('active');
+        } else if (savedBg === 'bg-geometric') {
+            geometricBtn.classList.add('active');
+        }
+    }
+    
+    // 添加点击事件
+    ribbonBtn.addEventListener('click', function() {
+        body.className = 'bg-ribbon';
+        localStorage.setItem('preferred-background', 'bg-ribbon');
+        updateActiveButton(ribbonBtn);
+    });
+    
+    medicalBtn.addEventListener('click', function() {
+        body.className = 'bg-medical';
+        localStorage.setItem('preferred-background', 'bg-medical');
+        updateActiveButton(medicalBtn);
+    });
+    
+    geometricBtn.addEventListener('click', function() {
+        body.className = 'bg-geometric';
+        localStorage.setItem('preferred-background', 'bg-geometric');
+        updateActiveButton(geometricBtn);
+    });
+    
+    // 更新活动按钮状态
+    function updateActiveButton(activeBtn) {
+        ribbonBtn.classList.remove('active');
+        medicalBtn.classList.remove('active');
+        geometricBtn.classList.remove('active');
+        activeBtn.classList.add('active');
+    }
+}); 
