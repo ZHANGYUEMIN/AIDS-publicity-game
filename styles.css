@@ -1902,74 +1902,123 @@ body {
     
     /* 直接使用JPG图片创建多个背景图像，添加轻微的白色透明效果 */
     background-image: 
+        /* 主要大图 */
         linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('images/Red_Ribbon.jpg'),
+        /* 中等图案 - 上部区域 */
         linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        /* 中等图案 - 左部区域 */
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        /* 中等图案 - 右部区域 */
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        /* 中等图案 - 下部区域 */
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        /* 小图案 - 各个角落 */
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        /* 小图案 - 中部区域填充 */
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
         linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg');
     
     /* 设置不同大小的背景图像 */
     background-size: 
-        120px 120px, 120px 120px, /* 大图 */
+        /* 主要大图 */
+        130px 130px, 130px 130px,
         120px 120px, 120px 120px,
-        100px 100px, 100px 100px,
-        100px 100px, 100px 100px,
-        100px 100px, 100px 100px,
-        80px 80px, 80px 80px,    /* 中等图 */
+        /* 中等图案 - 上部区域 */
+        90px 90px, 90px 90px,
+        90px 90px, 90px 90px,
+        90px 90px, 90px 90px,
+        /* 中等图案 - 左部区域 */
         80px 80px, 80px 80px,
         80px 80px, 80px 80px,
+        /* 中等图案 - 右部区域 */
         80px 80px, 80px 80px,
-        70px 70px, 70px 70px,
-        60px 60px, 60px 60px,    /* 小图 */
+        80px 80px, 80px 80px,
+        /* 中等图案 - 下部区域 */
+        80px 80px, 80px 80px,
+        80px 80px, 80px 80px,
+        /* 小图案 - 各个角落 */
         60px 60px, 60px 60px,
         60px 60px, 60px 60px,
+        60px 60px, 60px 60px,
+        60px 60px, 60px 60px,
+        /* 小图案 - 中部区域填充 */
         50px 50px, 50px 50px,
-        40px 40px, 40px 40px,    /* 更小图 */
-        40px 40px, 40px 40px;
+        50px 50px, 50px 50px,
+        50px 50px, 50px 50px,
+        50px 50px, 50px 50px,
+        /* 更多小图案 - 随机填充 */
+        40px 40px, 40px 40px,
+        40px 40px, 40px 40px,
+        40px 40px, 40px 40px,
+        40px 40px, 40px 40px,
+        30px 30px, 30px 30px;
     
     /* 设置背景图像位置，使其均匀分布 */
     background-position: 
-        center center, center center,  /* 中央 */
-        45% 45%, 55% 55%,
-        20% 20%, 20% 20%,        /* 四周分布 */
-        80% 20%, 80% 20%,
-        20% 80%, 20% 80%,
-        80% 80%, 80% 80%,
-        35% 15%, 35% 15%,        /* 更多位置 */
-        65% 15%, 65% 15%,
-        15% 35%, 15% 35%,
-        85% 35%, 85% 35%,
-        35% 65%, 35% 65%,
-        65% 65%, 65% 65%,
-        15% 85%, 15% 85%,
-        85% 85%, 85% 85%,
-        50% 25%, 50% 25%,
-        25% 50%, 25% 50%,
-        75% 50%, 75% 50%;
+        /* 主要大图 */
+        center center, center center,
+        40% 40%, 60% 60%,
+        /* 中等图案 - 上部区域 */
+        20% 15%, 20% 15%,
+        50% 10%, 50% 10%,
+        80% 15%, 80% 15%,
+        /* 中等图案 - 左部区域 */
+        15% 30%, 15% 30%,
+        10% 50%, 10% 50%,
+        /* 中等图案 - 右部区域 */
+        85% 30%, 85% 30%,
+        90% 50%, 90% 50%,
+        /* 中等图案 - 下部区域 */
+        20% 85%, 20% 85%,
+        80% 85%, 80% 85%,
+        /* 小图案 - 各个角落 */
+        5% 5%, 5% 5%,
+        95% 5%, 95% 5%,
+        5% 95%, 5% 95%,
+        95% 95%, 95% 95%,
+        /* 小图案 - 中部区域填充 */
+        30% 40%, 30% 40%,
+        70% 40%, 70% 40%,
+        25% 70%, 25% 70%,
+        75% 70%, 75% 70%,
+        /* 更多小图案 - 随机填充 */
+        40% 20%, 40% 20%,
+        60% 20%, 60% 20%,
+        40% 80%, 40% 80%,
+        60% 80%, 60% 80%,
+        35% 55%, 65% 45%;
     
     /* 设置背景不重复 */
     background-repeat: no-repeat;
@@ -2020,3 +2069,4 @@ body {
     border-color: var(--accent-color);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 } 
+
