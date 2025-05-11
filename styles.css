@@ -1900,56 +1900,73 @@ body {
     /* 不再使用SVG背景图案 */
     /* background-image: url('images/ribbon-pattern.svg'); */
     
-    /* 直接使用JPG图片创建多个背景图像，并调整不透明度 */
+    /* 直接使用JPG图片创建多个背景图像，不使用透明度渐变 */
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('images/Red_Ribbon.jpg'),
-        /* 添加更多位置的图案 */
-        linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('images/Red_Ribbon.jpg'),
-        linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), url('images/Red_Ribbon.jpg');
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg'),
+        url('images/Red_Ribbon.jpg');
     
     /* 设置不同大小的背景图像 */
     background-size: 
-        120px 120px, 120px 120px, /* 中央大图 */
-        65px 65px, 65px 65px,     /* 角落中等大小图案 */
-        65px 65px, 65px 65px, 
-        65px 65px, 65px 65px,
-        35px 35px, 35px 35px,     /* 小图案 */
-        35px 35px, 35px 35px,
-        35px 35px, 35px 35px,
-        35px 35px, 35px 35px,
-        35px 35px, 35px 35px,
-        /* 添加的新图案大小 */
-        25px 25px, 25px 25px,
-        25px 25px, 25px 25px,
-        25px 25px, 25px 25px,
-        25px 25px, 25px 25px;
+        120px 120px, /* 大图 */
+        120px 120px,
+        100px 100px,
+        100px 100px,
+        100px 100px,
+        80px 80px,   /* 中等图 */
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        80px 80px,
+        60px 60px,   /* 小图 */
+        60px 60px,
+        60px 60px,
+        60px 60px,
+        60px 60px,
+        40px 40px,   /* 更小图 */
+        40px 40px,
+        40px 40px,
+        40px 40px,
+        40px 40px;
     
-    /* 设置背景图像位置，使其分布在页面不同位置 */
+    /* 设置背景图像位置，使其均匀分布 */
     background-position: 
-        center center, center center,  /* 中央大图 */
-        10% 10%, 10% 10%,       /* 左上角 */
-        90% 10%, 90% 10%,       /* 右上角 */
-        10% 90%, 10% 90%,       /* 左下角 */
-        90% 90%, 90% 90%,       /* 右下角 */
-        30% 30%, 30% 30%,       /* 小图案分布 */
-        70% 30%, 70% 30%,
-        30% 70%, 30% 70%,
-        70% 70%, 70% 70%,
-        /* 添加的新图案位置 */
-        20% 50%, 20% 50%,
-        50% 20%, 50% 20%,
-        80% 50%, 80% 50%,
-        50% 80%, 50% 80%;
+        center center,  /* 中央 */
+        50% 50%,
+        20% 20%,        /* 四周分布 */
+        80% 20%,
+        20% 80%,
+        80% 80%,
+        35% 15%,        /* 更多位置 */
+        65% 15%,
+        15% 35%,
+        85% 35%,
+        35% 65%,
+        65% 65%,
+        15% 85%,
+        85% 85%,
+        50% 25%,
+        25% 50%,
+        75% 50%,
+        50% 75%,
+        40% 40%,
+        60% 60%;
     
     /* 设置背景不重复 */
     background-repeat: no-repeat;
