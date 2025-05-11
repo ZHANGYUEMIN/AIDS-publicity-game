@@ -92,7 +92,7 @@ function init() {
     showClassBtn.style.display = classData.completedStudents > 0 ? 'block' : 'none';
     
     // 在主页也设置班级按钮的可见性
-    viewClassBtn.style.display = classData.completedStudents > 0 ? 'block' : 'none';
+    viewClassBtn.style.display = 'block'; // 始终显示班级分析报告按钮
 }
 
 // 从本地存储加载学生报告数据
@@ -1114,21 +1114,74 @@ function showClassResults() {
     window.scrollTo(0, 0);
     classResultsScreen.scrollTo(0, 0);
     
-    // 生成班级分数统计图表
-    generateClassScoreChart();
+    // 检查是否有班级数据
+    const hasData = classData.completedStudents > 0;
     
-    // 生成题目难度与答对率分析图表
-    generateQuestionAccuracyChart();
+    // 获取图表部分和摘要部分
+    const chartsSection = document.getElementById('charts-section');
+    const summarySection = document.getElementById('summary-section');
     
-    // 生成知识领域掌握程度雷达图
-    generateKnowledgeAreaChart();
-    
-    // 生成班级总结报告
-    generateClassSummary();
+    if (!hasData) {
+        // 如果没有数据，显示提示信息
+        const noDataMessage = `
+            <div class="class-charts-container">
+                <div style="text-align: center; padding: 50px; background: #f9f9f9; border-radius: 10px; margin: 20px;">
+                    <h3 style="color: var(--primary-color); margin-bottom: 15px;">暂无班级数据</h3>
+                    <p>目前还没有学生完成测试，请等待学生完成测试后再查看班级分析报告。</p>
+                    <p>您可以先进行一次测试，以便了解测试内容。</p>
+                </div>
+            </div>
+        `;
+        
+        chartsSection.innerHTML = noDataMessage;
+        summarySection.innerHTML = noDataMessage;
+    } else {
+        // 恢复原始HTML结构
+        if (chartsSection.querySelector('.no-data-message')) {
+            chartsSection.innerHTML = `
+                <div class="class-charts-container">
+                    <div class="chart-wrapper wide">
+                        <h3>班级得分分布统计</h3>
+                        <div class="chart-container">
+                            <canvas id="class-score-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper wide">
+                        <h3>题目难度与答对率分析</h3>
+                        <div class="chart-container">
+                            <canvas id="question-accuracy-chart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper wide">
+                        <h3>知识领域掌握程度雷达图</h3>
+                        <div class="chart-container">
+                            <canvas id="knowledge-area-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            summarySection.innerHTML = `
+                <div id="class-summary" class="summary-container"></div>
+            `;
+        }
+        
+        // 生成班级分数统计图表
+        generateClassScoreChart();
+        
+        // 生成题目难度与答对率分析图表
+        generateQuestionAccuracyChart();
+        
+        // 生成知识领域掌握程度雷达图
+        generateKnowledgeAreaChart();
+        
+        // 生成班级总结报告
+        generateClassSummary();
+    }
     
     // 显示图表部分
-    document.getElementById('charts-section').classList.add('active');
-    document.getElementById('summary-section').classList.remove('active');
+    chartsSection.classList.add('active');
+    summarySection.classList.remove('active');
     
     // 更新导航按钮状态
     document.querySelectorAll('.nav-btn').forEach(btn => {
