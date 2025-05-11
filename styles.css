@@ -1944,4 +1944,291 @@ body {
 .bg-btn.active {
     border-color: var(--accent-color);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* 页脚图标样式 */
+.footer-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    position: relative;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* 各种图标定义 */
+.about-icon::before {
+    content: "📚";
+    font-size: 18px;
+    animation: pulse 2s infinite;
+}
+
+.contact-icon::before {
+    content: "📞";
+    font-size: 18px;
+    animation: bounce 2s infinite;
+}
+
+.email-icon::before {
+    content: "📧";
+    font-size: 16px;
+    animation: slide-in 3s infinite;
+}
+
+.link-icon::before {
+    content: "🔗";
+    font-size: 16px;
+    animation: rotate 3s infinite linear;
+}
+
+.legal-icon::before {
+    content: "⚖️";
+    font-size: 18px;
+    animation: swing 3s infinite;
+}
+
+.privacy-icon::before {
+    content: "🔒";
+    font-size: 16px;
+    animation: pulse 3s infinite;
+}
+
+.cookie-icon::before {
+    content: "🍪";
+    font-size: 16px;
+    animation: wiggle 3s infinite;
+}
+
+.terms-icon::before {
+    content: "📜";
+    font-size: 16px;
+    animation: fade 3s infinite;
+}
+
+.copyright-icon::before {
+    content: "©️";
+    font-size: 16px;
+    animation: pulse 4s infinite;
+}
+
+/* 图标动画效果 */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes slide-in {
+    0% { transform: translateX(-3px); opacity: 0.7; }
+    50% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(-3px); opacity: 0.7; }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes swing {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+}
+
+@keyframes fade {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* 页脚部分的优化 */
+.footer-section {
+    flex: 1 1 200px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.footer-section h4 {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #3f51b5;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.footer-section:hover h4 {
+    color: #ff4081;
+    border-bottom-color: #ff4081;
+}
+
+.footer-section p {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    transition: transform 0.2s ease;
+}
+
+.footer-section p:hover {
+    transform: translateX(5px);
+}
+
+.footer-section a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #ff4081;
+    text-decoration: underline;
+}
+
+.footer {
+    padding-top: 30px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.copyright {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.copyright p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 0;
+}
+
+/* 政策页面图标样式 */
+.policy-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    position: relative;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+/* 政策页面主标题图标 */
+.cookies-policy-icon::before {
+    content: "🍪";
+    font-size: 20px;
+    animation: wiggle 3s infinite;
+}
+
+.privacy-policy-icon::before {
+    content: "🔒";
+    font-size: 20px;
+    animation: pulse 3s infinite;
+}
+
+.terms-policy-icon::before {
+    content: "📜";
+    font-size: 20px;
+    animation: swing 3s infinite;
+}
+
+/* 章节图标 */
+.what-icon::before {
+    content: "❓";
+    font-size: 18px;
+    animation: bounce 2s infinite;
+}
+
+.how-icon::before {
+    content: "🔍";
+    font-size: 18px;
+    animation: slide-in 3s infinite;
+}
+
+.info-collect-icon::before {
+    content: "📊";
+    font-size: 18px;
+    animation: pulse 2.5s infinite;
+}
+
+.accept-icon::before {
+    content: "✅";
+    font-size: 18px;
+    animation: pulse 2s infinite;
+}
+
+/* 政策页面样式优化 */
+.policy-content h2 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    color: #3f51b5;
+    border-bottom: 2px solid #3f51b5;
+    padding-bottom: 10px;
+}
+
+.policy-text h3 {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    color: #444;
+    transition: color 0.3s ease;
+}
+
+.policy-text h3:hover {
+    color: #3f51b5;
+}
+
+.policy-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+.policy-content {
+    animation: slide-up 0.5s ease-out;
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 } 
