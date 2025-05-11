@@ -1900,73 +1900,76 @@ body {
     /* 不再使用SVG背景图案 */
     /* background-image: url('images/ribbon-pattern.svg'); */
     
-    /* 直接使用JPG图片创建多个背景图像，不使用透明度渐变 */
+    /* 直接使用JPG图片创建多个背景图像，添加轻微的白色透明效果 */
     background-image: 
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg'),
-        url('images/Red_Ribbon.jpg');
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg'),
+        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.55)), url('images/Red_Ribbon.jpg');
     
     /* 设置不同大小的背景图像 */
     background-size: 
-        120px 120px, /* 大图 */
-        120px 120px,
-        100px 100px,
-        100px 100px,
-        100px 100px,
-        80px 80px,   /* 中等图 */
-        80px 80px,
-        80px 80px,
-        80px 80px,
-        80px 80px,
-        60px 60px,   /* 小图 */
-        60px 60px,
-        60px 60px,
-        60px 60px,
-        60px 60px,
-        40px 40px,   /* 更小图 */
-        40px 40px,
-        40px 40px,
-        40px 40px,
-        40px 40px;
+        120px 120px, 120px 120px, /* 大图 */
+        120px 120px, 120px 120px,
+        100px 100px, 100px 100px,
+        100px 100px, 100px 100px,
+        100px 100px, 100px 100px,
+        80px 80px, 80px 80px,    /* 中等图 */
+        80px 80px, 80px 80px,
+        80px 80px, 80px 80px,
+        80px 80px, 80px 80px,
+        70px 70px, 70px 70px,
+        60px 60px, 60px 60px,    /* 小图 */
+        60px 60px, 60px 60px,
+        60px 60px, 60px 60px,
+        50px 50px, 50px 50px,
+        40px 40px, 40px 40px,    /* 更小图 */
+        40px 40px, 40px 40px;
     
     /* 设置背景图像位置，使其均匀分布 */
     background-position: 
-        center center,  /* 中央 */
-        50% 50%,
-        20% 20%,        /* 四周分布 */
-        80% 20%,
-        20% 80%,
-        80% 80%,
-        35% 15%,        /* 更多位置 */
-        65% 15%,
-        15% 35%,
-        85% 35%,
-        35% 65%,
-        65% 65%,
-        15% 85%,
-        85% 85%,
-        50% 25%,
-        25% 50%,
-        75% 50%,
-        50% 75%,
-        40% 40%,
-        60% 60%;
+        center center, center center,  /* 中央 */
+        45% 45%, 55% 55%,
+        20% 20%, 20% 20%,        /* 四周分布 */
+        80% 20%, 80% 20%,
+        20% 80%, 20% 80%,
+        80% 80%, 80% 80%,
+        35% 15%, 35% 15%,        /* 更多位置 */
+        65% 15%, 65% 15%,
+        15% 35%, 15% 35%,
+        85% 35%, 85% 35%,
+        35% 65%, 35% 65%,
+        65% 65%, 65% 65%,
+        15% 85%, 15% 85%,
+        85% 85%, 85% 85%,
+        50% 25%, 50% 25%,
+        25% 50%, 25% 50%,
+        75% 50%, 75% 50%;
     
     /* 设置背景不重复 */
     background-repeat: no-repeat;
