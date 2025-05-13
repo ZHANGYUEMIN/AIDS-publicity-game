@@ -6,66 +6,81 @@
   },
   "questionStats": {
     "0": {
-      "correct": 1,
-      "incorrect": 1
+      "correct": 0,
+      "incorrect": 0,
+      "total": null
     },
     "1": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "2": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "3": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "4": {
       "correct": 1,
-      "incorrect": 1
+      "incorrect": 0,
+      "total": null
     },
     "5": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "6": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "7": {
-      "correct": 1,
-      "incorrect": 1
+      "correct": 0,
+      "incorrect": 0,
+      "total": null
     },
     "8": {
       "correct": 1,
-      "incorrect": 1
+      "incorrect": 0,
+      "total": null
     },
     "9": {
       "correct": 1,
-      "incorrect": 1
+      "incorrect": 0,
+      "total": null
     }
   },
   "knowledgeAreaStats": {
     "基础知识": {
-      "correct": 3,
-      "incorrect": 1
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     },
     "传播途径": {
-      "correct": 4,
-      "incorrect": 0
+      "correct": 2,
+      "incorrect": 0,
+      "total": null
     },
     "预防措施": {
-      "correct": 3,
-      "incorrect": 1
+      "correct": 2,
+      "incorrect": 0,
+      "total": null
     },
     "治疗和管理": {
-      "correct": 3,
-      "incorrect": 1
+      "correct": 2,
+      "incorrect": 0,
+      "total": null
     },
     "社会支持与检测": {
-      "correct": 2,
-      "incorrect": 2
+      "correct": 1,
+      "incorrect": 0,
+      "total": null
     }
   }
 }
