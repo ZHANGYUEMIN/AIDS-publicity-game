@@ -1,11 +1,12 @@
 /**
  * 艾滋病知识自测游戏
- * 版本: v1.2.0
- * 更新日期: 2023-11-14
+ * 版本: v1.2.1
+ * 更新日期: 2023-11-25
  * 更新内容: 
- * 1. 修复GitHub图标显示问题，使用官方Octocat图标
- * 2. 添加小游戏排行榜功能，替代原开始新测试按钮
- * 3. 优化数据同步和界面显示
+ * 1. 修复GitHub数据同步对话框无法关闭的问题
+ * 2. 优化事件处理逻辑，避免事件绑定冲突
+ * 3. 改进GitHub配置，设置默认用户名和仓库信息
+ * 4. 增强对话框稳定性和用户体验
  */
 
 // 全局变量
@@ -68,9 +69,13 @@ function init() {
     const savedToken = localStorage.getItem('githubToken');
     if (savedToken) {
         githubToken = savedToken;
+        // 使用保存的或默认值
         githubUsername = localStorage.getItem('githubUsername') || githubUsername;
         githubRepo = localStorage.getItem('githubRepo') || githubRepo;
         githubBranch = localStorage.getItem('githubBranch') || githubBranch;
+    } else {
+        // 如果没有保存的令牌，但要确保使用默认设置
+        console.log('使用默认GitHub配置');
     }
     
     // 检查浏览器存储支持
@@ -302,17 +307,85 @@ function loadClassDataFromGitHub() {
     });
 }
 
+// 调试辅助函数
+function debugElementEvents(elementId, eventName) {
+    setTimeout(function() {
+        const element = document.getElementById(elementId);
+        if (element) {
+            console.log(`为元素 ${elementId} 添加 ${eventName} 事件监听器`);
+            element.addEventListener(eventName, function(e) {
+                console.log(`元素 ${elementId} 触发了 ${eventName} 事件`);
+            });
+        } else {
+            console.warn(`未找到元素 ${elementId}`);
+        }
+    }, 100);
+}
+
+// 保存GitHub令牌函数
+function saveGitHubToken(token, username, repo, branch, remember) {
+    console.log('保存GitHub令牌和相关信息');
+    
+    // 设置全局变量
+    githubToken = token;
+    githubUsername = username;
+    githubRepo = repo;
+    githubBranch = branch;
+    
+    // 如果选择记住，保存到本地存储
+    if (remember) {
+        localStorage.setItem('githubToken', token);
+        localStorage.setItem('githubUsername', username);
+        localStorage.setItem('githubRepo', repo);
+        localStorage.setItem('githubBranch', branch);
+        console.log('GitHub授权信息已保存到localStorage');
+    }
+    
+    // 显示成功通知
+    showNotification('GitHub授权信息已保存，正在上传数据...', 'info');
+    console.log('GitHub令牌保存成功');
+    
+    return true;
+}
+
 // 弹出GitHub令牌输入对话框
 function showGitHubTokenDialog() {
+    console.log('显示GitHub令牌对话框开始');
     // 检查是否已保存令牌
     const savedToken = localStorage.getItem('githubToken');
     if (savedToken) {
         githubToken = savedToken;
+        console.log('已从localStorage加载令牌');
+    }
+    
+    // 加载已保存的用户名、仓库名和分支名，如果没有则使用默认值
+    const savedUsername = localStorage.getItem('githubUsername') || 'ZHANGYUEMIN';
+    const savedRepo = localStorage.getItem('githubRepo') || 'AIDS-publicity-game';
+    const savedBranch = localStorage.getItem('githubBranch') || 'main';
+    
+    // 更新全局变量
+    githubUsername = savedUsername;
+    githubRepo = savedRepo;
+    githubBranch = savedBranch;
+    
+    console.log('已保存的GitHub配置:', { 
+        token: savedToken ? '已存在' : '未保存', 
+        username: savedUsername, 
+        repo: savedRepo, 
+        branch: savedBranch 
+    });
+    
+    // 检查是否已经存在对话框，如果存在则移除
+    const existingDialog = document.getElementById('github-dialog-overlay');
+    if (existingDialog) {
+        document.body.removeChild(existingDialog);
+        console.log('移除已存在的对话框');
     }
     
     // 创建对话框元素
     const dialogOverlay = document.createElement('div');
     dialogOverlay.className = 'dialog-overlay';
+    dialogOverlay.id = 'github-dialog-overlay';
     
     const dialogBox = document.createElement('div');
     dialogBox.className = 'dialog-box';
@@ -327,15 +400,15 @@ function showGitHubTokenDialog() {
         </div>
         <div class="form-group">
             <label for="github-username">GitHub 用户名:</label>
-            <input type="text" id="github-username" value="${githubUsername}" placeholder="输入您的GitHub用户名">
+            <input type="text" id="github-username" value="${savedUsername}" placeholder="输入您的GitHub用户名">
         </div>
         <div class="form-group">
             <label for="github-repo">GitHub 仓库名:</label>
-            <input type="text" id="github-repo" value="${githubRepo}" placeholder="输入您的GitHub仓库名">
+            <input type="text" id="github-repo" value="${savedRepo}" placeholder="输入您的GitHub仓库名">
         </div>
         <div class="form-group">
             <label for="github-branch">GitHub 分支名:</label>
-            <input type="text" id="github-branch" value="${githubBranch}" placeholder="输入GitHub分支名">
+            <input type="text" id="github-branch" value="${savedBranch}" placeholder="输入GitHub分支名">
         </div>
         <div class="form-group">
             <label>
@@ -351,59 +424,103 @@ function showGitHubTokenDialog() {
     
     dialogOverlay.appendChild(dialogBox);
     document.body.appendChild(dialogOverlay);
+    console.log('GitHub令牌对话框已添加到DOM');
     
-    // 添加事件监听器
-    document.getElementById('save-token-btn').addEventListener('click', () => {
-        const token = document.getElementById('github-token').value.trim();
-        const username = document.getElementById('github-username').value.trim();
-        const repo = document.getElementById('github-repo').value.trim();
-        const branch = document.getElementById('github-branch').value.trim();
-        const rememberToken = document.getElementById('remember-token').checked;
-        
-        if (!token) {
-            alert('请输入GitHub令牌');
-            return;
+    // 关闭对话框的函数
+    function closeDialog() {
+        const dialog = document.getElementById('github-dialog-overlay');
+        if (dialog) {
+            document.body.removeChild(dialog);
+            console.log('对话框已关闭');
         }
+    }
+    
+    // 保存按钮 - 使用addEventListener而不是onclick
+    const saveBtn = document.getElementById('save-token-btn');
+    if (saveBtn) {
+        // 移除任何现有的事件监听器
+        const newSaveBtn = saveBtn.cloneNode(true);
+        saveBtn.parentNode.replaceChild(newSaveBtn, saveBtn);
         
-        if (!username) {
-            alert('请输入GitHub用户名');
-            return;
+        newSaveBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('保存按钮被点击');
+            
+            const token = document.getElementById('github-token').value.trim();
+            const username = document.getElementById('github-username').value.trim();
+            const repo = document.getElementById('github-repo').value.trim();
+            const branch = document.getElementById('github-branch').value.trim();
+            const rememberToken = document.getElementById('remember-token').checked;
+            
+            console.log('获取到表单数据:', { username, repo, branch, tokenLength: token.length, rememberToken });
+            
+            // 验证输入
+            if (!token) {
+                alert('请输入GitHub令牌');
+                return;
+            }
+            
+            if (!username) {
+                alert('请输入GitHub用户名');
+                return;
+            }
+            
+            if (!repo) {
+                alert('请输入GitHub仓库名');
+                return;
+            }
+            
+            if (!branch) {
+                alert('请输入GitHub分支名');
+                return;
+            }
+            
+            // 保存GitHub令牌和配置
+            if (saveGitHubToken(token, username, repo, branch, rememberToken)) {
+                // 关闭对话框
+                closeDialog();
+                
+                // 尝试保存数据
+                setTimeout(function() {
+                    saveStudentReportsToGitHub();
+                }, 100);
+            }
+        });
+    }
+    
+    // 取消按钮 - 使用addEventListener而不是onclick
+    const cancelBtn = document.getElementById('cancel-token-btn');
+    if (cancelBtn) {
+        // 移除任何现有的事件监听器
+        const newCancelBtn = cancelBtn.cloneNode(true);
+        cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+        
+        newCancelBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('取消按钮被点击');
+            
+            // 关闭对话框
+            closeDialog();
+            
+            // 显示取消通知
+            showNotification('已取消GitHub数据同步', 'info');
+        });
+    }
+    
+    // 点击背景关闭对话框 - 使用addEventListener而不是onclick
+    dialogOverlay.addEventListener('click', function(e) {
+        if (e.target === dialogOverlay) {
+            console.log('通过点击背景关闭对话框');
+            closeDialog();
+            
+            // 显示取消通知
+            showNotification('已取消GitHub数据同步', 'info');
         }
-        
-        if (!repo) {
-            alert('请输入GitHub仓库名');
-            return;
-        }
-        
-        if (!branch) {
-            alert('请输入GitHub分支名');
-            return;
-        }
-        
-        // 设置全局变量
-        githubToken = token;
-        githubUsername = username;
-        githubRepo = repo;
-        githubBranch = branch;
-        
-        // 如果选择记住，保存到本地存储
-        if (rememberToken) {
-            localStorage.setItem('githubToken', token);
-            localStorage.setItem('githubUsername', username);
-            localStorage.setItem('githubRepo', repo);
-            localStorage.setItem('githubBranch', branch);
-        }
-        
-        // 关闭对话框
-        document.body.removeChild(dialogOverlay);
-        
-        // 尝试保存数据
-        saveStudentReportsToGitHub();
     });
     
-    document.getElementById('cancel-token-btn').addEventListener('click', () => {
-        document.body.removeChild(dialogOverlay);
-    });
+    console.log('GitHub令牌对话框初始化完成');
 }
 
 // 显示通知
@@ -440,6 +557,9 @@ function saveStudentReportsToGitHub() {
         return;
     }
     
+    // 显示加载中通知
+    showNotification('正在将数据保存到GitHub...', 'info');
+    
     try {
         const dataFilePath = 'data/studentReports.json';
         
@@ -454,11 +574,22 @@ function saveStudentReportsToGitHub() {
             if (!response.ok) {
                 if (response.status === 404) {
                     showNotification(`仓库 ${githubUsername}/${githubRepo} 不存在，请检查用户名和仓库名`, 'error');
+                } else if (response.status === 401) {
+                    showNotification(`GitHub授权失败，令牌无效或已过期`, 'error');
+                    // 清除无效的令牌
+                    localStorage.removeItem('githubToken');
+                    githubToken = '';
+                    // 显示令牌对话框
+                    setTimeout(() => {
+                        showGitHubTokenDialog();
+                    }, 1000);
                 } else {
                     showNotification(`检查仓库时出错: ${response.status}`, 'error');
                 }
                 throw new Error(`仓库不存在或无法访问: ${response.status}`);
             }
+            
+            console.log('GitHub仓库验证成功');
             
             // 检查data目录是否存在
             return fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/data?ref=${githubBranch}`, {
@@ -498,12 +629,14 @@ function saveStudentReportsToGitHub() {
                     }
                 });
             } else if (response.ok) {
+                console.log('已存在data目录');
                 return { directoryExists: true };
             } else {
                 throw new Error(`检查data目录时出错: ${response.status}`);
             }
         })
         .then(directoryInfo => {
+            console.log('正在检查是否存在数据文件');
             // 检查文件是否存在，获取SHA
             return fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${dataFilePath}?ref=${githubBranch}`, {
                 headers: {
@@ -514,9 +647,11 @@ function saveStudentReportsToGitHub() {
             .then(response => {
                 if (response.status === 404) {
                     // 文件不存在，创建新文件
+                    console.log('数据文件不存在，将创建新文件');
                     return { exists: false };
                 } else if (response.ok) {
                     return response.json().then(data => {
+                        console.log('已存在数据文件，获取SHA');
                         return { exists: true, sha: data.sha };
                     });
                 } else {
@@ -525,6 +660,7 @@ function saveStudentReportsToGitHub() {
             });
         })
         .then(fileInfo => {
+            console.log('准备上传数据');
             // 准备提交内容 - 使用正确的Base64编码
             const content = btoa(unescape(encodeURIComponent(JSON.stringify(studentReports, null, 2))));
             const commitMessage = '更新学生测试报告数据';
@@ -541,6 +677,7 @@ function saveStudentReportsToGitHub() {
                 requestBody.sha = fileInfo.sha;
             }
             
+            console.log('开始提交到GitHub');
             // 提交到GitHub
             return fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${dataFilePath}`, {
                 method: 'PUT',
@@ -555,7 +692,7 @@ function saveStudentReportsToGitHub() {
         .then(response => {
             if (response.ok) {
                 console.log('学生报告数据已成功保存到GitHub');
-                showNotification('数据已保存到GitHub', 'success');
+                showNotification('学生报告数据已保存到GitHub', 'success');
                 
                 // 同时保存到本地作为备份
                 saveStudentReports();
@@ -572,6 +709,11 @@ function saveStudentReportsToGitHub() {
                     // 保存到本地作为备份
                     saveStudentReports();
                     
+                    return false;
+                }).catch(jsonError => {
+                    console.error('解析错误响应失败:', jsonError);
+                    showNotification(`保存到GitHub失败: 状态码 ${response.status}`, 'error');
+                    saveStudentReports();
                     return false;
                 });
             }
@@ -599,8 +741,13 @@ function saveClassDataToGitHub() {
         return;
     }
     
+    // 显示加载通知
+    showNotification('正在保存班级数据到GitHub...', 'info');
+    
     try {
         const dataFilePath = 'data/classData.json';
+        
+        console.log('准备保存班级数据到GitHub');
         
         // 检查文件是否存在，获取SHA
         fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${dataFilePath}?ref=${githubBranch}`, {
@@ -612,16 +759,26 @@ function saveClassDataToGitHub() {
         .then(response => {
             if (response.status === 404) {
                 // 文件不存在，创建新文件
+                console.log('班级数据文件不存在，将创建新文件');
                 return { exists: false };
             } else if (response.ok) {
                 return response.json().then(data => {
+                    console.log('已存在班级数据文件，获取SHA');
                     return { exists: true, sha: data.sha };
                 });
+            } else if (response.status === 401) {
+                showNotification(`GitHub授权失败，令牌无效或已过期`, 'error');
+                // 清除无效的令牌
+                localStorage.removeItem('githubToken');
+                githubToken = '';
+                throw new Error('GitHub授权失败，令牌无效');
             } else {
+                showNotification(`检查班级数据文件时出错: ${response.status}`, 'error');
                 throw new Error(`检查文件是否存在时出错: ${response.status}`);
             }
         })
         .then(fileInfo => {
+            console.log('准备上传班级数据');
             // 准备提交内容 - 确保使用正确的Base64编码
             const content = btoa(unescape(encodeURIComponent(JSON.stringify(classData, null, 2))));
             const commitMessage = '更新班级数据';
@@ -638,6 +795,7 @@ function saveClassDataToGitHub() {
                 requestBody.sha = fileInfo.sha;
             }
             
+            console.log('开始提交班级数据到GitHub');
             // 提交到GitHub
             return fetch(`https://api.github.com/repos/${githubUsername}/${githubRepo}/contents/${dataFilePath}`, {
                 method: 'PUT',
@@ -669,7 +827,7 @@ function saveClassDataToGitHub() {
                     return false;
                 }).catch(error => {
                     console.error('解析错误响应失败:', error);
-                    showNotification(`保存班级数据失败: ${error.message}`, 'error');
+                    showNotification(`保存班级数据失败: 状态码 ${response.status}`, 'error');
                     
                     // 保存到本地作为备份
                     localStorage.setItem('classData', JSON.stringify(classData));
@@ -2828,8 +2986,98 @@ function addGitHubButton() {
     }
 }
 
+// 用于测试GitHub数据同步的函数
+function testGitHubSync() {
+    console.log('开始测试GitHub数据同步功能');
+    
+    // 检查是否有保存的令牌
+    const savedToken = localStorage.getItem('githubToken');
+    const savedUsername = localStorage.getItem('githubUsername');
+    const savedRepo = localStorage.getItem('githubRepo');
+    const savedBranch = localStorage.getItem('githubBranch');
+    
+    console.log('已保存的GitHub配置:', { 
+        token: savedToken ? '已存在' : '未保存', 
+        username: savedUsername || '未保存', 
+        repo: savedRepo || '未保存', 
+        branch: savedBranch || '未保存' 
+    });
+    
+    if (savedToken && savedUsername && savedRepo) {
+        // 设置全局变量
+        githubToken = savedToken;
+        githubUsername = savedUsername;
+        githubRepo = savedRepo;
+        githubBranch = savedBranch || 'main';
+        
+        console.log('使用保存的令牌进行测试');
+        saveStudentReportsToGitHub();
+    } else {
+        console.log('没有保存的令牌，显示对话框');
+        showGitHubTokenDialog();
+    }
+}
+
+// 添加到window对象以便在控制台调用
+window.testGitHubSync = testGitHubSync;
+
 // 确保页面加载完成后立即执行
 document.addEventListener('DOMContentLoaded', function() {
-    // 立即尝试添加GitHub按钮
-    setTimeout(addGitHubButton, 100);
+    // 立即初始化GitHub按钮
+    initGitHubButton();
+    
+    // 添加测试按钮到页面，方便调试
+    if (window.location.href.includes('debug=1') || localStorage.getItem('debug_mode')) {
+        // 创建调试按钮
+        const debugBtn = document.createElement('button');
+        debugBtn.textContent = '测试GitHub同步';
+        debugBtn.style.position = 'fixed';
+        debugBtn.style.bottom = '10px';
+        debugBtn.style.right = '10px';
+        debugBtn.style.zIndex = '9999';
+        debugBtn.style.backgroundColor = '#ff5722';
+        debugBtn.style.color = 'white';
+        debugBtn.style.border = 'none';
+        debugBtn.style.borderRadius = '4px';
+        debugBtn.style.padding = '8px 16px';
+        debugBtn.style.cursor = 'pointer';
+        
+        // 添加点击事件
+        debugBtn.onclick = function() {
+            testGitHubSync();
+        };
+        
+        // 添加到页面
+        document.body.appendChild(debugBtn);
+        console.log('已添加GitHub同步测试按钮');
+    }
 });
+
+// 初始化GitHub按钮
+function initGitHubButton() {
+    console.log('初始化GitHub按钮...');
+    
+    // 尝试添加按钮
+    addGitHubButton();
+    
+    // 直接为现有按钮添加点击事件
+    const existingButton = document.getElementById('save-to-github-btn');
+    if (existingButton) {
+        console.log('为GitHub按钮添加点击事件');
+        
+        // 移除任何现有的事件监听器
+        const newButton = existingButton.cloneNode(true);
+        existingButton.parentNode.replaceChild(newButton, existingButton);
+        
+        // 添加新的事件监听器
+        newButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('GitHub按钮被点击');
+            showGitHubTokenDialog();
+        });
+    } else {
+        console.log('未找到GitHub按钮，1秒后重试');
+        setTimeout(initGitHubButton, 1000);
+    }
+}

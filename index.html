@@ -519,13 +519,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             const githubBtn = document.getElementById('save-to-github-btn');
             if (githubBtn) {
-                githubBtn.addEventListener('click', function() {
-                    if (typeof showGitHubTokenDialog === 'function') {
-                        showGitHubTokenDialog();
-                    } else {
-                        alert('GitHub功能尚未初始化，请刷新页面后重试');
-                    }
-                });
+                console.log('index.html中找到GitHub按钮，app.js将负责处理点击事件');
+                // 不要在这里再次添加事件监听器，避免冲突
             }
         });
     </script>
