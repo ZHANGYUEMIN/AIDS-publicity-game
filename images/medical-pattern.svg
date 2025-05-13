@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="medical-pattern" patternUnits="userSpaceOnUse" width="100" height="100">
+      <!-- 医疗十字 -->
+      <path d="M40,50 L60,50 M50,40 L50,60" stroke="#4285f4" stroke-width="2" opacity="0.1"/>
+      
+      <!-- 心电图 -->
+      <path d="M10,50 L20,50 L25,30 L35,70 L40,50 L90,50" stroke="#4285f4" stroke-width="1.5" opacity="0.1" fill="none"/>
+      
+      <!-- 医学标志 -->
+      <circle cx="80" cy="20" r="8" stroke="#4285f4" stroke-width="1.5" fill="none" opacity="0.1"/>
+      <path d="M76,20 L84,20 M80,16 L80,24" stroke="#4285f4" stroke-width="1.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#medical-pattern)" />
+</svg> 

@@ -1,0 +1,24 @@
+{
+  "totalStudents": 38,
+  "completedStudents": 0,
+  "studentScores": {},
+  "questionStats": {
+    "0": {"correct": 0, "incorrect": 0},
+    "1": {"correct": 0, "incorrect": 0},
+    "2": {"correct": 0, "incorrect": 0},
+    "3": {"correct": 0, "incorrect": 0},
+    "4": {"correct": 0, "incorrect": 0},
+    "5": {"correct": 0, "incorrect": 0},
+    "6": {"correct": 0, "incorrect": 0},
+    "7": {"correct": 0, "incorrect": 0},
+    "8": {"correct": 0, "incorrect": 0},
+    "9": {"correct": 0, "incorrect": 0}
+  },
+  "knowledgeAreaStats": {
+    "基础知识": {"correct": 0, "incorrect": 0},
+    "传播途径": {"correct": 0, "incorrect": 0},
+    "预防措施": {"correct": 0, "incorrect": 0},
+    "治疗和管理": {"correct": 0, "incorrect": 0},
+    "社会支持与检测": {"correct": 0, "incorrect": 0}
+  }
+}

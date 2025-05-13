@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <pattern id="ribbon-pattern" patternUnits="userSpaceOnUse" width="300" height="300">
+      <!-- 使用外部SVG作为图案元素 -->
+      
+      <!-- 大型红丝带 (中心位置) -->
+      <image xlink:href="Red_Ribbon.svg" x="100" y="100" width="100" height="100" opacity="0.25" />
+      
+      <!-- 中型红丝带 (四个角落) -->
+      <image xlink:href="Red_Ribbon.svg" x="10" y="10" width="60" height="60" opacity="0.15" />
+      <image xlink:href="Red_Ribbon.svg" x="230" y="10" width="60" height="60" opacity="0.15" />
+      <image xlink:href="Red_Ribbon.svg" x="10" y="230" width="60" height="60" opacity="0.15" />
+      <image xlink:href="Red_Ribbon.svg" x="230" y="230" width="60" height="60" opacity="0.15" />
+      
+      <!-- 小型红丝带 (分散排布) -->
+      <image xlink:href="Red_Ribbon.svg" x="50" y="140" width="30" height="30" opacity="0.1" />
+      <image xlink:href="Red_Ribbon.svg" x="220" y="140" width="30" height="30" opacity="0.1" />
+      <image xlink:href="Red_Ribbon.svg" x="140" y="50" width="30" height="30" opacity="0.1" />
+      <image xlink:href="Red_Ribbon.svg" x="140" y="220" width="30" height="30" opacity="0.1" />
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#ribbon-pattern)" />
+</svg> 

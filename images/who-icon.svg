@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 192 192" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- WHO图标简化版 -->
+  <path d="M96 16C50.817 16 14 52.817 14 98C14 143.183 50.817 180 96 180C141.183 180 178 143.183 178 98C178 52.817 141.183 16 96 16Z" fill="#0093d5"/>
+  <path d="M96 42C82.193 42 71 53.193 71 67C71 80.807 82.193 92 96 92C109.807 92 121 80.807 121 67C121 53.193 109.807 42 96 42Z" stroke="white" stroke-width="8"/>
+  <path d="M149 110C149 133.748 125.748 153 96 153C66.252 153 43 133.748 43 110" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <path d="M104 67L88 67" stroke="white" stroke-width="8" stroke-linecap="round"/>
+  <path d="M96 57V77" stroke="white" stroke-width="8" stroke-linecap="round"/>
+</svg> 

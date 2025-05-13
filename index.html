@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾滋病知识自测游戏 | HAPPY Games™</title>
+    <meta name="description" content="艾滋病知识自测游戏，用于课前测试或课前摸底，由HAPPY Games™开发制作。">
+    <meta name="author" content="HAPPY Games™">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Ma+Shan+Zheng&family=Zhi+Mang+Xing&family=ZCOOL+KuaiLe&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 添加GitHub按钮样式 -->
+    <style>
+        .github-btn {
+            background-color: #24292e !important;
+            color: white !important;
+            margin-right: 10px !important;
+            position: relative !important;
+            padding: 10px 15px 10px 40px !important;
+            border: none !important;
+            border-radius: 4px !important;
+            font-weight: bold !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+            display: flex !important;
+            align-items: center !important;
+            font-size: 14px !important;
+            line-height: 1.5 !important;
+            letter-spacing: 0.5px !important;
+            min-height: 36px !important;
+            min-width: 160px !important;
+            outline: none !important;
+        }
+        
+        .github-btn:hover {
+            background-color: #3a3f44 !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+        }
+        
+        .github-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #24292e;
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            font-size: 16px;
+            line-height: 20px;
+            text-align: center;
+            margin-right: 8px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* GitHub猫头图标的SVG样式 */
+        .github-octocat {
+            width: 22px;
+            height: 22px;
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            fill: white;
+        }
+        
+        /* 小游戏排行榜按钮样式 */
+        .leaderboard-btn {
+            background: linear-gradient(45deg, #4CAF50, #8BC34A) !important;
+            color: white !important;
+            font-weight: bold !important;
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3) !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.3s ease !important;
+            border: none !important;
+            padding: 12px 20px !important;
+        }
+        
+        .leaderboard-btn:hover {
+            background: linear-gradient(45deg, #3d8b40, #7CB342) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 12px rgba(76, 175, 80, 0.4) !important;
+        }
+        
+        .leaderboard-btn:active {
+            transform: translateY(1px) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-content">
+        <div class="container">
+            <div id="welcome-screen" class="screen active">
+                <h1>艾滋病知识自测游戏</h1>
+                <div class="slogan-banner">
+                    <p class="slogan">凝聚社会力量，合力共抗艾滋！</p>
+                    <p class="slogan-en">Unite social forces, fight AIDS together!</p>
+                </div>
+                <div class="game-author">
+                    <p>由 HAPPY Games™ 精心设计与制作</p>
+                    <p class="author-en">Carefully designed and produced by HAPPY Games™</p>
+                </div>
+                <div class="welcome-buttons">
+                    <button id="save-to-github-btn" class="github-btn">
+                        <svg class="github-octocat" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        GitHub数据同步
+                    </button>
+                    <button id="take-quiz-btn" class="leaderboard-btn">小游戏排行榜</button>
+                    <button id="view-reports-btn">查看历史报告</button>
+                    <button id="view-class-btn" class="class-btn">班级分析报告</button>
+                </div>
+                <div id="quiz-intro" class="sub-section active">
+                    <p>欢迎参加艾滋病知识自测！通过这个小游戏，你可以测试自己对艾滋病的了解程度。</p>
+                    <p>共10题，完成后将获得个人分析报告。</p>
+                    <div class="name-selection">
+                        <label>请选择你的姓名：</label>
+                        <div id="student-grid" class="student-grid"></div>
+                    </div>
+                    <button id="start-btn" disabled>开始测试</button>
+                </div>
+                <div id="reports-management" class="sub-section">
+                    <div class="reports-header">
+                        <h2>历史测试报告</h2>
+                        <div class="reports-actions">
+                            <button id="delete-mode-btn">删除报告</button>
+                            <button id="back-to-quiz-btn">返回</button>
+                        </div>
+                    </div>
+                    <div id="reports-list" class="reports-list">
+                        <!-- 报告列表将在这里动态生成 -->
+                    </div>
+                </div>
+                <div id="delete-mode" class="sub-section">
+                    <div class="reports-header">
+                        <h2>选择要删除的报告</h2>
+                        <div class="reports-actions">
+                            <label class="select-all-container">
+                                <input type="checkbox" id="select-all-checkbox">
+                                <span>全选</span>
+                            </label>
+                            <button id="confirm-delete-btn">确认删除</button>
+                            <button id="cancel-delete-btn">取消</button>
+                        </div>
+                    </div>
+                    <div id="delete-list" class="reports-list delete-mode">
+                        <!-- 待删除的报告列表将在这里动态生成 -->
+                    </div>
+                </div>
+            </div>
+
+            <div id="quiz-screen" class="screen">
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progress-fill"></div>
+                    </div>
+                    <div id="progress-text">1/10</div>
+                </div>
+                <div id="question-container">
+                    <h2 id="question-text"></h2>
+                    <div id="options-container" class="options-container"></div>
+                </div>
+                <button id="next-btn" disabled>下一题</button>
+            </div>
+
+            <div id="feedback-screen" class="screen">
+                <div id="feedback-content">
+                    <h2 id="feedback-title"></h2>
+                    <p id="feedback-message"></p>
+                </div>
+                <button id="continue-btn">继续</button>
+            </div>
+
+            <div id="results-screen" class="screen">
+                <h1>测试完成！</h1>
+                <div class="slogan-banner">
+                    <p class="slogan">凝聚社会力量，合力共抗艾滋！</p>
+                    <p class="slogan-en">Unite social forces, fight AIDS together!</p>
+                </div>
+                <div class="results-container">
+                    <h2>个人分析报告</h2>
+                    <div class="score-container">
+                        <div class="score-circle">
+                            <span id="score-value">0</span>
+                            <span id="score-total">/10</span>
+                        </div>
+                    </div>
+                    <div class="charts-container">
+                        <div class="chart-wrapper">
+                            <h3>答题情况分析</h3>
+                            <div class="chart-container">
+                                <canvas id="personal-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="performance-analysis">
+                            <h3>知识掌握情况</h3>
+                            <div id="knowledge-areas"></div>
+                        </div>
+                    </div>
+                    <div id="performance-text"></div>
+                </div>
+                <button id="show-class-btn">查看班级报告</button>
+            </div>
+
+            <div id="class-results-screen" class="screen">
+                <h1>班级分析报告</h1>
+                <div class="slogan-banner">
+                    <p class="slogan">凝聚社会力量，合力共抗艾滋！</p>
+                    <p class="slogan-en">Unite social forces, fight AIDS together!</p>
+                </div>
+                <div class="report-navigation">
+                    <button class="nav-btn active" data-section="charts">图表分析</button>
+                    <button class="nav-btn" data-section="summary">详细报告</button>
+                </div>
+                <div id="charts-section" class="report-section active">
+                    <div class="class-charts-container">
+                        <div class="chart-wrapper wide">
+                            <h3>班级得分分布统计</h3>
+                            <div class="chart-container">
+                                <canvas id="class-score-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper wide">
+                            <h3>题目难度与答对率分析</h3>
+                            <div class="chart-container">
+                                <canvas id="question-accuracy-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper wide">
+                            <h3>知识领域掌握程度雷达图</h3>
+                            <div class="chart-container">
+                                <canvas id="knowledge-area-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="summary-section" class="report-section">
+                    <div id="class-summary" class="summary-container"></div>
+                </div>
+                <div class="button-group">
+                    <button id="back-to-personal-btn">返回个人分析报告</button>
+                    <button id="restart-btn">返回首页</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie通知弹窗 -->
+    <div id="cookie-notice" class="cookie-notice">
+        <div class="cookie-content">
+            <h3>关于Cookies的使用</h3>
+            <p>HAPPY Games™ 使用Cookies和类似技术来提升您的浏览体验，分析网站使用情况，并为您提供个性化内容。我们尊重您的隐私选择，您可以选择以下选项：</p>
+            <div class="cookie-options">
+                <div class="cookie-option">
+                    <input type="checkbox" id="essential-cookies" checked disabled>
+                    <label for="essential-cookies">必要Cookies（必选）</label>
+                    <div class="cookie-description">这些Cookie对网站的正常运行必不可少，无法关闭。</div>
+                </div>
+                <div class="cookie-option">
+                    <input type="checkbox" id="functional-cookies" checked>
+                    <label for="functional-cookies">功能Cookies</label>
+                    <div class="cookie-description">用于记住您的偏好设置和选择。</div>
+                </div>
+                <div class="cookie-option">
+                    <input type="checkbox" id="analytics-cookies" checked>
+                    <label for="analytics-cookies">统计Cookies</label>
+                    <div class="cookie-description">帮助我们了解用户如何使用网站，以改进用户体验。</div>
+                </div>
+            </div>
+            <div class="cookie-buttons">
+                <button id="accept-all-cookies" class="primary-btn">全部同意</button>
+                <button id="accept-selected-cookies">仅同意所选</button>
+                <button id="reject-cookies">拒绝非必要Cookies</button>
+                <a href="#" id="cookies-policy-link">Cookies政策更多信息</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版权信息 -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>关于我们</h4>
+                <p>HAPPY Games™ 专注于教育类游戏开发，致力于通过互动方式提升学习体验。</p>
+            </div>
+            <div class="footer-section">
+                <h4>联系我们</h4>
+                <p>邮箱：2522185191@qq.com</p>
+            </div>
+            <div class="footer-section">
+                <h4><img src="images/link-icon.svg" alt="链接" class="link-icon">友情链接</h4>
+                <p><img src="images/who-icon.svg" alt="WHO" class="org-icon"><a href="https://www.who.int/" target="_blank" rel="noopener noreferrer" class="friendly-link">世界卫生组织 (WHO)</a></p>
+                <p><img src="images/unaids-icon.svg" alt="UNAIDS" class="org-icon"><a href="http://www.unaids.org.cn/" target="_blank" rel="noopener noreferrer" class="friendly-link">联合国艾滋病规划署 (UNAIDS)</a></p>
+            </div>
+            <div class="footer-section">
+                <h4>法律信息</h4>
+                <p><a href="#" id="privacy-policy-link">隐私政策</a></p>
+                <p><a href="#" id="cookies-policy-link-footer">Cookies政策</a></p>
+                <p><a href="#" id="terms-link">使用条款</a></p>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>© 2025 HAPPY Games™ 版权所有，保留所有权利。未经授权，禁止复制、分发或修改本产品的任何部分。</p>
+            <p class="copyright-en">© 2025 HAPPY Games™ All rights reserved. Unauthorized copying, distribution, or modification of any part of this product is prohibited.</p>
+        </div>
+        <div class="background-selector">
+            <span>背景选择：</span>
+            <button id="bg-ribbon-btn" class="bg-btn active" title="红丝带背景">🎗️</button>
+            <button id="bg-medical-btn" class="bg-btn" title="医疗图标背景">⚕️</button>
+            <button id="bg-geometric-btn" class="bg-btn" title="几何图形背景">◻️</button>
+        </div>
+    </footer>
+
+    <!-- Cookies政策详细页面 -->
+    <div id="cookies-policy-page" class="policy-page">
+        <div class="policy-content">
+            <button class="close-policy">&times;</button>
+            <h2>HAPPY Games™ Cookies政策</h2>
+            <div class="policy-text">
+                <h3>1. 什么是Cookies？</h3>
+                <p>Cookies是由网站放置在您设备上的小型文本文件。它们被广泛用于使网站正常工作，或更高效地工作，以及为网站所有者提供信息。</p>
+                
+                <h3>2. 我们如何使用Cookies</h3>
+                <p>我们使用Cookies出于多种目的，包括：</p>
+                <ul>
+                    <li><strong>必要Cookies：</strong>这些对于网站的基本功能至关重要，如保存登录状态、保存测试进度等。</li>
+                    <li><strong>功能Cookies：</strong>这些Cookies使我们能够记住您的偏好设置，如语言和字体大小等，以提供更个性化的体验。</li>
+                    <li><strong>统计Cookies：</strong>这些Cookies帮助我们了解访问者如何与网站交互，以便我们改进网站的性能和功能。</li>
+                </ul>
+                
+                <h3>3. 我们使用的具体Cookies</h3>
+                <div class="cookies-table-container">
+                    <table class="cookies-table">
+                        <tr>
+                            <th>Cookie名称</th>
+                            <th>类型</th>
+                            <th>目的</th>
+                            <th>有效期</th>
+                        </tr>
+                        <tr>
+                            <td>cookiesAccepted</td>
+                            <td>必要</td>
+                            <td>记录用户的Cookies选择</td>
+                            <td>1年</td>
+                        </tr>
+                        <tr>
+                            <td>studentReports</td>
+                            <td>功能</td>
+                            <td>存储测试结果和报告</td>
+                            <td>永久（直到手动清除）</td>
+                        </tr>
+                        <tr>
+                            <td>classData</td>
+                            <td>功能</td>
+                            <td>存储班级统计数据</td>
+                            <td>永久（直到手动清除）</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <h3>4. 控制Cookies</h3>
+                <p>大多数网络浏览器允许您控制大部分Cookies的使用。您可以通过浏览器设置来管理Cookies偏好。请注意，禁用必要Cookies可能会影响网站的功能。</p>
+                <p>您可以在大多数浏览器中通过以下方式管理Cookies：</p>
+                <ul>
+                    <li>Chrome: 设置 > 隐私设置和安全性 > Cookies和其他站点数据</li>
+                    <li>Firefox: 选项 > 隐私与安全 > Cookies和站点数据</li>
+                    <li>Safari: 偏好设置 > 隐私 > Cookies和网站数据</li>
+                    <li>Edge: 设置 > Cookies和网站权限 > Cookies</li>
+                </ul>
+                
+                <h3>5. 数据收集与使用</h3>
+                <p>我们通过Cookies收集的所有数据都存储在您的本地设备上，不会传输到我们的服务器。这些数据仅用于提供艾滋病知识自测游戏的核心功能和改善您的使用体验。</p>
+                
+                <h3>6. 政策更新</h3>
+                <p>我们可能会不时更新本Cookies政策。任何更改都将在本页面上公布。我们鼓励用户定期查看本政策，以了解我们如何保护您的信息。</p>
+                
+                <h3>7. 联系我们</h3>
+                <p>如果您对我们的Cookies政策有任何疑问或意见，请通过以下方式联系我们：</p>
+                <p>邮箱：2522185191@qq.com</p>
+                
+                <div class="policy-footer">
+                    <p>最后更新日期：2025/05/01</p>
+                    <p>© 2025 HAPPY Games™ 版权所有，保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 隐私政策详细页面 -->
+    <div id="privacy-policy-page" class="policy-page">
+        <div class="policy-content">
+            <button class="close-policy">&times;</button>
+            <h2>HAPPY Games™ 隐私政策</h2>
+            <div class="policy-text">
+                <h3>1. 信息收集</h3>
+                <p>HAPPY Games™ 十分重视您的隐私。我们收集的信息仅限于您主动提供给我们的内容：</p>
+                <ul>
+                    <li><strong>个人身份信息：</strong>在使用艾滋病知识自测游戏时，我们会收集您提供的姓名，仅用于个性化您的测试体验。</li>
+                    <li><strong>测试数据：</strong>我们会收集您的测试答案和结果，以便生成分析报告和统计数据。</li>
+                    <li><strong>使用数据：</strong>我们可能会收集有关您如何使用我们网站的信息，如您访问的页面、您在每个页面上停留的时间以及您如何与我们的内容互动。</li>
+                </ul>
+                
+                <h3>2. 信息使用</h3>
+                <p>我们使用收集的信息用于：</p>
+                <ul>
+                    <li>提供、维护和改进我们的服务</li>
+                    <li>为您生成个性化的测试报告和班级统计数据</li>
+                    <li>分析和了解用户如何使用我们的服务，以便改进用户体验</li>
+                    <li>开发新的功能和服务</li>
+                </ul>
+                
+                <h3>3. 信息存储</h3>
+                <p>我们使用的所有数据均存储在您的本地设备上（通过浏览器的localStorage），不会传输到我们的服务器。这意味着：</p>
+                <ul>
+                    <li>您的数据保持在您的控制之下</li>
+                    <li>您可以随时通过浏览器设置清除这些数据</li>
+                    <li>我们无法远程访问您的数据</li>
+                </ul>
+                
+                <h3>4. 信息共享</h3>
+                <p>由于所有数据都存储在本地，我们不会与任何第三方共享您的个人信息。</p>
+                
+                <h3>5. 数据安全</h3>
+                <p>我们采取适当的技术和组织措施来保护您的个人数据不受意外丢失、未经授权的访问、修改或披露的影响。</p>
+                
+                <h3>6. 您的权利</h3>
+                <p>根据适用的数据保护法，您有权：</p>
+                <ul>
+                    <li>访问您的个人数据</li>
+                    <li>更正不准确的个人数据</li>
+                    <li>删除您的个人数据</li>
+                    <li>限制或反对处理您的个人数据</li>
+                    <li>获取您的个人数据的副本</li>
+                </ul>
+                <p>在我们的应用中，您可以通过删除报告功能来删除您的测试记录，或者通过清除浏览器数据来完全删除所有存储的信息。</p>
+                
+                <h3>7. 儿童隐私</h3>
+                <p>我们的服务不面向13岁以下的儿童。我们不会故意收集13岁以下儿童的个人身份信息。如果您认为我们可能收集了13岁以下儿童的信息，请联系我们，我们将采取适当措施删除该信息。</p>
+                
+                <h3>8. 政策变更</h3>
+                <p>我们可能会不时更新本隐私政策。任何更改都将在本页面上公布。我们鼓励用户定期查看本政策，以了解我们如何保护您的信息。</p>
+                
+                <h3>9. 联系我们</h3>
+                <p>如果您对我们的隐私政策有任何疑问或意见，请通过以下方式联系我们：</p>
+                <p>邮箱：2522185191@qq.com</p>
+                
+                <div class="policy-footer">
+                    <p>最后更新日期：2025/05/01</p>
+                    <p>© 2025 HAPPY Games™ 版权所有，保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 使用条款详细页面 -->
+    <div id="terms-page" class="policy-page">
+        <div class="policy-content">
+            <button class="close-policy">&times;</button>
+            <h2>HAPPY Games™ 使用条款</h2>
+            <div class="policy-text">
+                <h3>1. 接受条款</h3>
+                <p>通过访问或使用HAPPY Games™的艾滋病知识自测游戏，您同意受本使用条款的约束。如果您不同意这些条款，请不要使用我们的服务。</p>
+                
+                <h3>2. 知识产权</h3>
+                <p>艾滋病知识自测游戏及其所有内容、功能和设计元素均为HAPPY Games™所有，受著作权、商标和其他知识产权法律保护。未经HAPPY Games™明确书面许可，不得复制、修改、分发、展示、执行、发布或以其他方式使用这些资料。</p>
+                
+                <h3>3. 用户行为</h3>
+                <p>使用我们的服务时，您同意：</p>
+                <ul>
+                    <li>不以任何方式干扰或破坏服务的安全性</li>
+                    <li>不尝试获取未经授权的访问权限</li>
+                    <li>不使用服务进行任何非法或未经授权的目的</li>
+                    <li>不传播虚假或误导性信息</li>
+                </ul>
+                
+                <h3>4. 免责声明</h3>
+                <p>艾滋病知识自测游戏按"原样"提供，HAPPY Games™不提供任何明示或暗示的保证。我们不保证服务将不间断、安全或无错误，也不保证内容的准确性、可靠性或完整性。</p>
+                <p>游戏中的艾滋病知识内容仅供教育参考，不应替代专业医疗建议。</p>
+                
+                <h3>5. 责任限制</h3>
+                <p>在任何情况下，HAPPY Games™及其员工、代理或合作伙伴均不对因使用或无法使用我们的服务而导致的任何直接、间接、附带、特殊、惩罚性或后果性损害承担责任。</p>
+                
+                <h3>6. 修改和终止</h3>
+                <p>HAPPY Games™保留随时修改或终止服务的权利，不论是否发出通知。我们不对修改或终止服务对用户或任何第三方承担责任。</p>
+                
+                <h3>7. 适用法律</h3>
+                <p>这些条款受中华人民共和国法律管辖，并按其解释，不考虑法律冲突原则。</p>
+                
+                <h3>8. 条款变更</h3>
+                <p>我们保留随时更新这些条款的权利。任何更改将在本页面上公布。继续使用我们的服务将构成对修订后的条款的接受。</p>
+                
+                <h3>9. 联系我们</h3>
+                <p>如果您对我们的使用条款有任何疑问或意见，请通过以下方式联系我们：</p>
+                <p>邮箱：2522185191@qq.com</p>
+                
+                <div class="policy-footer">
+                    <p>最后更新日期：2025/05/01</p>
+                    <p>© 2025 HAPPY Games™ 版权所有，保留所有权利。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="students.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // 为手动添加的GitHub按钮绑定事件
+        document.addEventListener('DOMContentLoaded', function() {
+            const githubBtn = document.getElementById('save-to-github-btn');
+            if (githubBtn) {
+                githubBtn.addEventListener('click', function() {
+                    if (typeof showGitHubTokenDialog === 'function') {
+                        showGitHubTokenDialog();
+                    } else {
+                        alert('GitHub功能尚未初始化，请刷新页面后重试');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
