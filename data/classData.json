@@ -2,70 +2,70 @@
   "totalStudents": 38,
   "completedStudents": 1,
   "studentScores": {
-    "许跃腾": 7
+    "许跃腾": 8
   },
   "questionStats": {
     "0": {
       "correct": 1,
-      "incorrect": 0
+      "incorrect": 1
     },
     "1": {
-      "correct": 1,
+      "correct": 2,
       "incorrect": 0
     },
     "2": {
-      "correct": 1,
+      "correct": 2,
       "incorrect": 0
     },
     "3": {
-      "correct": 1,
+      "correct": 2,
       "incorrect": 0
     },
     "4": {
-      "correct": 0,
+      "correct": 1,
       "incorrect": 1
     },
     "5": {
-      "correct": 1,
+      "correct": 2,
       "incorrect": 0
     },
     "6": {
-      "correct": 1,
+      "correct": 2,
       "incorrect": 0
     },
     "7": {
       "correct": 1,
-      "incorrect": 0
+      "incorrect": 1
     },
     "8": {
-      "correct": 0,
+      "correct": 1,
       "incorrect": 1
     },
     "9": {
-      "correct": 0,
+      "correct": 1,
       "incorrect": 1
     }
   },
   "knowledgeAreaStats": {
     "基础知识": {
-      "correct": 2,
-      "incorrect": 0
+      "correct": 3,
+      "incorrect": 1
     },
     "传播途径": {
-      "correct": 2,
+      "correct": 4,
       "incorrect": 0
     },
     "预防措施": {
-      "correct": 1,
+      "correct": 3,
       "incorrect": 1
     },
     "治疗和管理": {
-      "correct": 1,
+      "correct": 3,
       "incorrect": 1
     },
     "社会支持与检测": {
-      "correct": 1,
-      "incorrect": 1
+      "correct": 2,
+      "incorrect": 2
     }
   }
 }
